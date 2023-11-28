@@ -1,15 +1,13 @@
-# Turbo Morphing + TomSelect
+# TomSelect "reinitializing"
 
-This repository shows example "bad behavior" when morphing occurs
-while using a JavaScript library (e.g. TomSelect) that modifies the DOM.
+This repository shows an example of a page reloading via Ajax and
+TomSelect "losing" its selected value.
 
 ## Reproducing the Issue
 
 1. `git clone git@github.com:weaverryan/turbo-morph-tom-select-reproducer.git`
 2. Get a web server running - as simple as `php -S localhost:8000` or anything else.
-3. Open the page. TomSelect will transform the `select` into a rich element.
-   Click the `Same page navigate` to trigger a morph.
-
-The result is that the HTML added by TomSelect is lost. However, the Stimulus
-controller wasn't removed, so it's not disconnected and reconnected. There are also
-no values or targets that are lost that we could respond to.
+3. Open the page. TomSelect will transform the `select` into a rich element. Yay!
+   If you click "Ajax Reload", TomSelect is successfully destroyed and recreated.
+4. However, if you change the value (e.g. to "Ice Cream") and then click "Ajax Reload",
+   TomSelect is destroyed and recreated, but the value is lost.
