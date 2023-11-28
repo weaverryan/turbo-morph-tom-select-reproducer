@@ -20,22 +20,15 @@
             };
             initializeTomSelect();
 
-            document.addEventListener('click', async (event) => {
-                if (event.target.tagName === 'A') {
-                    event.preventDefault();
-
-                    const response = await fetch('/');
-                    document.body.innerHTML = await response.text()
-
-                    initializeTomSelect();
-                }
+            const a = document.querySelector('a');
+            a.addEventListener('click', async (event) => {
+                event.preventDefault();
+                initializeTomSelect();
             });
         </script>
     </head>
     <body>
-        <a
-            href=""
-        >Ajax Reload</a>
+        <a href="#">Destroy & Recreate</a>
 
         <select>
             <option value="1">Pizza</option>
