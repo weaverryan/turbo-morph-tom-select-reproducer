@@ -17,7 +17,10 @@
 
             const tomSelectController = class extends Controller {
                 connect() {
-                    new TomSelect(this.element);
+                    this.tomSelect = new TomSelect(this.element);
+                }
+                disconnect() {
+                    this.tomSelect.destroy();
                 }
             }
             const app = Application.start();
