@@ -6,43 +6,19 @@
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css">
 
-        <meta name="turbo-refresh-method" content="morph">
-        <meta name="turbo-refresh-scroll" content="preserve">
-
         <script type="module">
-            import * as Turbo from 'https://cdn.jsdelivr.net/npm/@hotwired/turbo@8.0.0-beta.1/+esm'
-            import { Application, Controller } from 'https://cdn.jsdelivr.net/npm/@hotwired/stimulus@3.2.2/+esm';
             import TomSelect from 'https://cdn.jsdelivr.net/npm/tom-select@2.3.1/+esm';
 
-            const tomSelectController = class extends Controller {
-                tomSelect;
-
-                connect() {
-                    this.tomSelect = new TomSelect(this.element);
-                }
-
-                reconnect() {
-                    if (this.tomSelect) {
-                        this.tomSelect.destroy();
-                        this.tomSelect = new TomSelect(this.element);
-                    }
-                }
-            }
-            const app = Application.start();
-            app.debug = true;
-            app.register('tom-select', tomSelectController);
+            const select = document.querySelector('select');
+            const tomSelect = new TomSelect(select);
         </script>
     </head>
     <body>
         <a
             href=""
-            data-turbo-action="replace"
-        >Same page navigate</a>
+        >Ajax Reload</a>
 
-        <select
-            data-controller="tom-select"
-            data-action="turbo:morph@window->tom-select#reconnect"
-        >
+        <select>
             <option value="1">Pizza</option>
             <option value="2">Burger</option>
             <option value="3">Fries</option>
